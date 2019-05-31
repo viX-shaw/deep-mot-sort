@@ -93,7 +93,7 @@ class Visualization(object):
         self.viewer = ImageViewer(
             update_ms, image_shape, "Figure %s" % seq_info["sequence_name"])
         self.viewer.thickness = 2
-        self.viewer.enable_videowriter("out.mp4",fps=10)
+        self.viewer.enable_videowriter("out.mp4",fps=24)
         self.frame_idx = seq_info["min_frame_idx"]
         self.last_idx = seq_info["max_frame_idx"]
         self.track_lines = {}
