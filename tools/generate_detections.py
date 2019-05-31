@@ -177,6 +177,7 @@ def generate_detections(encoder, mot_dir, output_dir, detection_dir=None):
             bgr_image = cv2.imread(
                 image_filenames[frame_idx], cv2.IMREAD_COLOR)
             features = encoder(bgr_image, rows[:, 2:6].copy())
+            print(features.shape)
             detections_out += [np.r_[(row, feature)] for row, feature
                                in zip(rows, features)]
 
@@ -208,7 +209,7 @@ def parse_args():
 
 def main():
     args = parse_args()
-    encoder = create_box_encoder(args.model, batch_size=32)
+    encoder = create_box_encoder(args.model, batch_size=10)
     generate_detections(encoder, args.mot_dir, args.output_dir,
                         args.detection_dir)
 
