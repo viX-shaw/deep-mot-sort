@@ -108,7 +108,7 @@ def create_box_encoder(model_filename, input_name="images",
         print(image.shape)
         image_patches = []
         #adding dummy images to make batch_size 10 permanently because of googlenet
-        i = len(boxes)/10
+        i = len(boxes)//10
         # for box in boxes:
         for box in range(0,(i+1)*10):
             if box < len(boxes):
