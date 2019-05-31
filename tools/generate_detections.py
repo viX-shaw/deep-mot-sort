@@ -76,7 +76,7 @@ class ImageEncoder(object):
         with tf.gfile.GFile(checkpoint_filename, "rb") as file_handle:
             graph_def = tf.GraphDef()
             graph_def.ParseFromString(file_handle.read())
-        tf.import_graph_def(graph_def, name="net")
+        tf.import_graph_def(graph_def, name="")
         # self.input_var = tf.get_default_graph().get_tensor_by_name(
         #     "net/%s:0" % input_name)
         # self.output_var = tf.get_default_graph().get_tensor_by_name(
