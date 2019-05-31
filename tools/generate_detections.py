@@ -190,7 +190,7 @@ def generate_detections(encoder, mot_dir, output_dir, detection_dir=None):
             feat = np.squeeze(np.asarray(features))
             print(feat)
             detections_out += [np.r_[(row, feature)] for row, feature
-                               in zip(rows, features)]
+                               in zip(rows, features[:len(rows)])]
             print(np.asarray(detections_out).shape)
 
         output_filename = os.path.join(output_dir, "%s.npy" % sequence)
