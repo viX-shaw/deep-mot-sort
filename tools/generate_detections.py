@@ -84,7 +84,7 @@ class ImageEncoder(object):
         self.input_var = tf.get_default_graph().get_tensor_by_name(
             "input:0")
         self.output_var = tf.get_default_graph().get_tensor_by_name(
-            "pool5:0" % output_name)
+            "pool5:0")
 
         assert len(self.output_var.get_shape()) == 2
         assert len(self.input_var.get_shape()) == 4
