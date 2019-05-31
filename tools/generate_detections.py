@@ -107,9 +107,14 @@ def create_box_encoder(model_filename, input_name="images",
     def encoder(image, boxes):
         print(image.shape)
         image_patches = []
-        for box in boxes:
-            patch = extract_image_patch(image, box, image_shape[:2])
-            if patch is None:
+        #adding dummy images to make batch_size 10 permanently because of googlenet
+        i = len(boxes)/10
+        # for box in boxes:
+        for box in range(0,(i+1)*10):
+            if box < len(boxes):
+                patch = extract_image_patch(image, boxes[box], image_shape[:2])
+            # if patch is None:
+            else:
                 print("WARNING: Failed to extract image patch: %s." % str(box))
                 patch = np.random.uniform(
                     0., 255., image_shape).astype(np.uint8)
@@ -182,6 +187,8 @@ def generate_detections(encoder, mot_dir, output_dir, detection_dir=None):
                 image_filenames[frame_idx], cv2.IMREAD_COLOR)
             features = encoder(bgr_image, rows[:, 2:6].copy())
             print(features.shape)
+            feat = np.squeeze(np.asarray(features))
+            print(feat)
             detections_out += [np.r_[(row, feature)] for row, feature
                                in zip(rows, features)]
 
