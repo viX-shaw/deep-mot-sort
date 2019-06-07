@@ -72,7 +72,7 @@ class Track:
         self.age = 1
         self.time_since_update = 0
 
-        self.state = TrackState.Confirmed
+        self.state = TrackState.Tentative
         self.features = []
         if feature is not None:
             self.features.append(feature)
@@ -147,10 +147,10 @@ class Track:
     def mark_missed(self):
         """Mark this track as missed (no association at the current time step).
         """
-        print("Tracker no", self.track_id, "deleted")
         if self.state == TrackState.Tentative:
             self.state = TrackState.Deleted
         elif self.time_since_update > self._max_age:
+            print("Tracker no", self.track_id, "deleted")
             self.state = TrackState.Deleted
 
     def is_tentative(self):
