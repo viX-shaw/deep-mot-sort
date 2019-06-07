@@ -186,12 +186,12 @@ def generate_detections(encoder, mot_dir, output_dir, detection_dir=None):
             bgr_image = cv2.imread(
                 image_filenames[frame_idx], cv2.IMREAD_COLOR)
             features = encoder(bgr_image, rows[:, 2:6].copy())
-            print(features.shape)
+            # print(features.shape)
             feat = np.squeeze(np.asarray(features))
-            print(feat)
+            # print(feat)
             detections_out += [np.r_[(row, feature)] for row, feature
                                in zip(rows, features[:len(rows)])]
-            print(np.asarray(detections_out).shape)
+            # print(np.asarray(detections_out).shape)
 
         output_filename = os.path.join(output_dir, "%s.npy" % sequence)
         np.save(

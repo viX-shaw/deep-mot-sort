@@ -181,13 +181,13 @@ def run(sequence_dir, detection_file, output_file, min_confidence,
             boxes, nms_max_overlap, scores)
         detections = [detections[i] for i in indices]
         
-        print("Before tracker")
+        # print("Before tracker")
 
         # Update tracker.
         tracker.predict()
         tracker.update(detections)
         
-        print("Before visualization")        
+        # print("Before visualization")        
 
         # Update visualization.
         if display:
@@ -198,10 +198,11 @@ def run(sequence_dir, detection_file, output_file, min_confidence,
             vis.draw_detections(detections)
             vis.draw_trackers(tracker.tracks)
             
-        print("After update vis.")
+        # print("After update vis.")
         # Store results.
         for track in tracker.tracks:
             if not track.is_confirmed() or track.time_since_update > 1:
+                print("Track no", track.track_id, "did not update for ", track.time_since_update, "frames")
                 continue
             bbox = track.to_tlwh()
             results.append([
