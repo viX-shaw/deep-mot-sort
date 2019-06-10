@@ -264,7 +264,7 @@ def parse_args():
     parser.add_argument(
         "--iou_dist", help="MAX IOU DISTANCE",
         default = 0.7, type=float)
-    )
+    
     return parser.parse_args()
 
 
