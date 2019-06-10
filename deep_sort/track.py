@@ -149,7 +149,7 @@ class Track:
         """
         # if self.state == TrackState.Tentative:
         #     self.state = TrackState.Deleted
-        elif self.time_since_update > self._max_age:
+        if self.time_since_update > self._max_age:
             print("Tracker no", self.track_id, "deleted")
             self.state = TrackState.Deleted
 
