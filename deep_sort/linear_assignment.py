@@ -67,8 +67,8 @@ def min_cost_matching(
     for row, col in indices:
         track_idx = track_indices[row]
         detection_idx = detection_indices[col]
-        print("Distance", cost_matrix[row, col])
         if cost_matrix[row, col] > max_distance:
+            print("Distance", cost_matrix[row, col])
             unmatched_tracks.append(track_idx)
             unmatched_detections.append(detection_idx)
         else:
