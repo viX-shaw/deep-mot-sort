@@ -144,8 +144,8 @@ class Visualization(object):
                 thisLine = np.array(trackerDot, np.int32)
                 self.track_lines[str(d[4])] = thisLine
 
-            # if not track.is_confirmed() or track.time_since_update > 0:
-            if not track.is_confirmed():            
+            if not track.is_confirmed() or track.time_since_update > 0:
+            # if not track.is_confirmed():            
                 continue
             self.viewer.color = create_unique_color_uchar(track.track_id+10)
             self.viewer.rectangle(*track.to_tlwh().astype(np.int), label=str(track.track_id))
