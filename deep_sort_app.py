@@ -163,7 +163,7 @@ def run(sequence_dir, detection_file, output_file, min_confidence,
     seq_info = gather_sequence_info(sequence_dir, detection_file,loadtxt)
     metric = nn_matching.NearestNeighborDistanceMetric(
         "cosine", max_cosine_distance, nn_budget)
-    tracker = Tracker(metric,max_iou_distance = iou_dist, max_age= max_age)
+    tracker = Tracker(metric, state, max_iou_distance = iou_dist, max_age= max_age)
     results = []
 
     def frame_callback(vis, frame_idx):
@@ -267,6 +267,9 @@ def parse_args():
     parser.add_argument(
         "--max_age", help="MAX IOU DISTANCE",
         default = 30, type=int)
+    parser.add_argument(
+        "--state", help="MAX IOU DISTANCE",
+        default = 1, type=int)    #A new track will remain tentative for n_inits
 
     
     return parser.parse_args()
@@ -278,4 +281,4 @@ if __name__ == "__main__":
         args.sequence_dir, args.detection_file, args.output_file,
         args.min_confidence, args.nms_max_overlap, args.min_detection_height,
         args.max_cosine_distance, args.nn_budget, args.display,args.loadtxt, args.iou_dist,
-        args.max_age)
+        args.max_age, args.state)
