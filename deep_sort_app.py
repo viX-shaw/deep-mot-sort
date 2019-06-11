@@ -131,7 +131,7 @@ def create_detections(detection_mat, frame_idx, min_height=0):
 
 def run(sequence_dir, detection_file, output_file, min_confidence,
         nms_max_overlap, min_detection_height, max_cosine_distance,
-        nn_budget, display, loadtxt, iou_dist, max_age):
+        nn_budget, display, loadtxt, iou_dist, max_age, state):
     """Run multi-target tracker on a particular sequence.
 
     Parameters
